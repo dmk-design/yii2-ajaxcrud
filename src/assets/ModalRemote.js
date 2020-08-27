@@ -229,6 +229,10 @@ function ModalRemote(modalId) {
             return;
         }
 
+	if(response.forceRedirect !== undefined && response.forceRedirect) {
+            window.location.href = response.forceRedirect;
+        }
+	    
         if (response.size !== undefined)
             this.setSize(response.size);
 
