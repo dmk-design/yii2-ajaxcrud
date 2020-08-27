@@ -33,7 +33,7 @@ class CrudAsset extends AssetBundle
            'ModalRemote.js',
            'ajaxcrud.js',
        ]:[
-           'ModalRemote.min.js',
+           'ModalRemote.js',
            'ajaxcrud.min.js',
        ];
 
