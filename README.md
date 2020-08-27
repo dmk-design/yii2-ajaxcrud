@@ -25,13 +25,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist johnitvn/yii2-ajaxcrud "*"
+php composer.phar require --prefer-dist dmk-design/yii2-ajaxcrud "*"
 ```
 
 or add
 
 ```
-"johnitvn/yii2-ajaxcrud": "*"
+"dmk-design/yii2-ajaxcrud": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -57,7 +57,3 @@ You can then access Gii through the following URL:
 http://localhost/path/to/index.php?r=gii
 
 and you can see <b>Ajax CRUD Generator</b>
-
-Other Links
-[Free download wordpress theme](https://w3deep.com/wordpress-theme/)
-[Free download html template](https://w3deep.com/html-template/)
