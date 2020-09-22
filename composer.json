@@ -25,10 +25,10 @@
     },
     "autoload": {
         "psr-4": {
-            "dmk-design\\ajaxcrud\\": "src/"
+            "johnitvn\\ajaxcrud\\": "src/"
         }
     },
     "extra": {
-        "bootstrap": "dmk-design\\ajaxcrud\\Bootstrap"
+        "bootstrap": "johnitvn\\ajaxcrud\\Bootstrap"
     }
 }
