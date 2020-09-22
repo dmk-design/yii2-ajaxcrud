@@ -219,7 +219,15 @@ function ModalRemote(modalId) {
                 // Backwards compatible reload of fixed crud-datatable-pjax
                 $.pjax.reload({container: '#crud-datatable-pjax'});
             } else {
-                $.pjax.reload({container: response.forceReload});
+		if(response.forceReloadUrl !== undefined && response.forceReloadUrl)
+		{
+		    $.pjax({container: response.forceReload,push:false, url:response.forceReloadUrl});
+		}
+	        else
+	        {
+		   $.pjax.reload({container: response.forceReload});
+	        }
+                
             }
         }
 
