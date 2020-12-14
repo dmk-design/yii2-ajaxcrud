@@ -75,6 +75,8 @@ function ModalRemote(modalId) {
             $(this.dialog).addClass('modal-lg');
         else if (size == 'small')
             $(this.dialog).addClass('modal-sm');
+	else if (size == 'x-large')
+            $(this.dialog).addClass('modal-xl');
         else if (size !== 'normal')
             console.warn("Undefined size " + size);
     };
