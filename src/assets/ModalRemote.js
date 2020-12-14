@@ -223,7 +223,7 @@ function ModalRemote(modalId) {
             } else {
 		if(response.forceReloadUrl !== undefined && response.forceReloadUrl)
 		{
-		    $.pjax({container: response.forceReload,push:false, url:response.forceReloadUrl});
+		    $.pjax({container: response.forceReload,push:false, url:response.forceReloadUrl, timeout: 10000});
 		}
 	        else
 	        {
