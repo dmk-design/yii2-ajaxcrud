@@ -227,6 +227,11 @@ function ModalRemote(modalId) {
 		}
 	        else
 	        {
+		    var strEnd = response.forceReload.indexOf("-pjax");
+		    if(strEnd >=0)
+		    {
+		        response.forceReload = response.forceReload.substring(0,strEnd);
+		    }
 		    $(response.forceReload).yiiGridView("applyFilter");
                     // $.pjax.reload({container: response.forceReload});
 	        }
