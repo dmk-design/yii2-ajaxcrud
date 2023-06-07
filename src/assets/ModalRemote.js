@@ -32,7 +32,7 @@ function ModalRemote(modalId) {
 
     this.loadingContent = '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>';
 
-
+    this.successCallback = function(){};
     /**
      * Show the modal
      */
@@ -267,6 +267,7 @@ function ModalRemote(modalId) {
                 $(this.footer).find('[type="submit"]')[0]
             );
         }
+	this.successCallback(response);
     }
 
     /**
