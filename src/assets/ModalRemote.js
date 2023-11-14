@@ -11,7 +11,8 @@
 }(jQuery));
 
 
-function ModalRemote(modalId) {
+
+function ModalRemote(modalId, sidebarOptions=false) {
 
     this.defaults = {
         okLabel: "OK",
@@ -19,33 +20,95 @@ function ModalRemote(modalId) {
         cancelLabel: "Cancel",
         loadingTitle: "Loading"
     };
+    this.sidebarOptions = {
+        'selector':'.bs-canvas-right',
+        'backdrop':true
+    }
+    this.sidebarEnabled = false;
+    
+    
 
-    this.modal = $(modalId);
+    if(this.sidebarOptions !== false)
+    {
+        if(typeof sidebarOptions === 'object') {
 
-    this.dialog = $(modalId).find('.modal-dialog');
+            this.sidebarOptions = $.extend(this.sidebarOptions,sidebarOptions);
+        }
+        if(!$(this.sidebarOptions.selector).length)
+        {
+            alert('You have specified offCanvas sidebar functionality but element was detected for the overlay. Reverting to modal functionality')
+            
+        }
+        this.sidebar = new OffCanvas(this.sidebarOptions.id);
+        this.sidebarEnabled = true;
+        if(this.sidebarOptions.backdrop == true &&  $('.bs-canvas-overlay').length !== 0)
+        {
+            this.sidebar.insertBackdrop();
+            this.bsOverlay = $('.bs-canvas-overlay');
+        }
 
-    this.header = $(modalId).find('.modal-header');
+    }
 
-    this.content = $(modalId).find('.modal-body');
+    if(this.sidebarEnabled === true)
+    {
 
-    this.footer = $(modalId).find('.modal-footer');
+        this.dialog = $(modalId).find('.offcanvas-dialog');
+    
+        this.header = $(modalId).find('.offcanvas-header');
+    
+        this.content = $(modalId).find('.offcanvas-body');
+    
+        this.footer = $(modalId).find('.offcanvas-footer');
+
+    }else
+    {
+        this.modal = $(modalId);
+
+        this.dialog = $(modalId).find('.modal-dialog');
+    
+        this.header = $(modalId).find('.modal-header');
+    
+        this.content = $(modalId).find('.modal-body');
+    
+        this.footer = $(modalId).find('.modal-footer');
+    
+        
+    }
+        
+    
+   
 
     this.loadingContent = '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>';
 
+    
+    
     this.successCallback = function(){};
     /**
      * Show the modal
      */
     this.show = function () {
         this.clear();
-        $(this.modal).modal('show');
+        if(this.sidebarEnabled === true)
+        {
+            this.sidebar.show();
+        }
+        else{
+            $(this.modal).modal('show');
+        }
+        
     };
 
     /**
      * Hide the modal
      */
     this.hide = function () {
-        $(this.modal).modal('hide');
+        if(this.sidebarEnabled === true)
+        {
+            this.sidebar.hide();
+        }
+        else{
+            $(this.modal).modal('hide');
+        }
     };
 
     /**
