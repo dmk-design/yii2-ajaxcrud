@@ -15,43 +15,42 @@ $(document).ready(function () {
         modal = new ModalRemote('#ajaxCrudModal');
     }
 
-    if($('.bs-canvas').length >0)
-    {
-        offCanvas = new ModalRemote($('.bs-canvas').attr('id'),true);
-        offCanvas.successCallback = showCanvas($('.bs-canvas').attr('id'))
-    }
+    // if($('.bs-canvas').length >0)
+    // {
+    //     offCanvas = new ModalRemote($('.bs-canvas').attr('id'),true);
+    //     offCanvas.successCallback = showCanvas($('.bs-canvas').attr('id'))
+    // }
 
-    function showCanvas(elm)
-    {
-        $('#'+elm).addClass('mr-0');
-        $('[data-target="' + elm + '"], a[href="' + elm + '"]').attr('aria-expanded', "true");
-		$(elm + ' .bs-canvas-close').attr('aria-expanded', "true");
-		$('[data-target="' + elm + '"], a[href="' + elm + '"]').attr('aria-expanded', "true");
-		if(offCanvas.bsOverlay.length)
-			offCanvas.bsOverlay.addClass('show');
-		return false;
-    }
+    // function showCanvas(elm)
+    // {
+    //     $('#'+elm).addClass('mr-0');
+    //     $('[data-target="' + elm + '"], a[href="' + elm + '"]').attr('aria-expanded', "true");
+	// 	$(elm + ' .bs-canvas-close').attr('aria-expanded', "true");
+	// 	$('[data-target="' + elm + '"], a[href="' + elm + '"]').attr('aria-expanded', "true");
 
-    $('[data-toggle="off-canvas"]').on('click', function(event){
-        event.preventDefault();
-        offCanvas.open(this, null);
-    });
+	// 	return false;
+    // }
 
-    $('.bs-canvas-close, .bs-canvas-overlay').on('click', function(){
-        var elm;
-		if($(this).hasClass('bs-canvas-close')) {
-			elm = $(this).closest('.bs-canvas');
-			$('[data-target="' + elm + '"], a[href="' + elm + '"]').attr('aria-expanded', "false");
-		} else {
-			elm = $('.bs-canvas')
-			$('[data-toggle="canvas"]').attr('aria-expanded', "false");	
-		}
-		elm.removeClass('mr-0');
-		$('.bs-canvas-close', elm).attr('aria-expanded', "false");
-		if(offCanvas.bsOverlay.length)
-            offCanvas.bsOverlay.removeClass('show');
-		return false;
-    });
+    // $('[data-toggle="offcanvas"]').on('click', function(event){
+    //     event.preventDefault();
+    //     offCanvas.open(this, null);
+    // });
+
+    // $('.bs-canvas-close, .bs-canvas-overlay').on('click', function(){
+    //     var elm;
+	// 	if($(this).hasClass('bs-canvas-close')) {
+	// 		elm = $(this).closest('.bs-canvas');
+	// 		$('[data-target="' + elm + '"], a[href="' + elm + '"]').attr('aria-expanded', "false");
+	// 	} else {
+	// 		elm = $('.bs-canvas')
+	// 		$('[data-toggle="canvas"]').attr('aria-expanded', "false");	
+	// 	}
+	// 	elm.removeClass('mr-0');
+	// 	$('.bs-canvas-close', elm).attr('aria-expanded', "false");
+	// 	if(offCanvas.bsOverlay.length)
+    //         offCanvas.bsOverlay.removeClass('show');
+	// 	return false;
+    // });
     // Catch click event on all buttons that want to open a modal
     $(document).on('click', '[role="modal-remote"]', function (event) {
         event.preventDefault();
