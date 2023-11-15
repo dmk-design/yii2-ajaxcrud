@@ -47,31 +47,17 @@ function ModalRemote(modalId, sidebarOptions=false) {
 
     }
 
-    if(this.sidebarEnabled === true)
-    {
 
-        this.dialog = $(this.sidebarOptions.selector).find('.offcanvas-dialog');
-    
-        this.header = $(this.sidebarOptions.selector).find('.offcanvas-header');
-    
-        this.content = $(this.sidebarOptions.selector).find('.offcanvas-body');
-    
-        this.footer = $(this.sidebarOptions.selector).find('.offcanvas-footer');
+    this.modal = $(modalId);
 
-    }else
-    {
-        this.modal = $(modalId);
+    this.dialog = $(modalId).find('.modal-dialog');
 
-        this.dialog = $(modalId).find('.modal-dialog');
-    
-        this.header = $(modalId).find('.modal-header');
-    
-        this.content = $(modalId).find('.modal-body');
-    
-        this.footer = $(modalId).find('.modal-footer');
-    
-        
-    }
+    this.header = $(modalId).find('.modal-header');
+
+    this.content = $(modalId).find('.modal-body');
+
+    this.footer = $(modalId).find('.modal-footer');
+
         
     
    
