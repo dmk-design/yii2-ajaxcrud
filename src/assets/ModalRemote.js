@@ -52,13 +52,13 @@ function ModalRemote(modalId, sidebarOptions=false) {
     if(this.sidebarEnabled === true)
     {
 
-        this.dialog = $(modalId).find('.offcanvas-dialog');
+        this.dialog = $(this.sidebarOptions.selector).find('.offcanvas-dialog');
     
-        this.header = $(modalId).find('.offcanvas-header');
+        this.header = $(this.sidebarOptions.selector).find('.offcanvas-header');
     
-        this.content = $(modalId).find('.offcanvas-body');
+        this.content = $(this.sidebarOptions.selector).find('.offcanvas-body');
     
-        this.footer = $(modalId).find('.offcanvas-footer');
+        this.footer = $(this.sidebarOptions.selector).find('.offcanvas-footer');
 
     }else
     {
