@@ -28,7 +28,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
     
     
 
-    if(this.sidebarOptions !== false)
+    if(sidebarOptions !== false)
     {
         if(typeof sidebarOptions === 'object') {
 
