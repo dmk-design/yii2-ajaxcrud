@@ -21,13 +21,11 @@ function ModalRemote(modalId, sidebarOptions=false) {
         loadingTitle: "Loading"
     };
     this.sidebarOptions = {
-        'selector':'.bs-canvas-right',
+        'selector':modalId,
         'backdrop':true
     }
     this.sidebarEnabled = false;
     
-    
-
     if(sidebarOptions !== false)
     {
         if(typeof sidebarOptions === 'object') {
