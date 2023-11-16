@@ -37,9 +37,9 @@ function ModalRemote(modalId, sidebarOptions=false) {
             alert('You have specified offCanvas sidebar functionality but element was detected for the overlay. Reverting to modal functionality')
             
         }
-        this.sidebar = new OffCanvas(this.sidebarOptions.selector);
+        this.sidebar = new OffCanvas(this.sidebarOptions.selector,this.sidebarOptions);
         this.sidebarEnabled = true;
-        if(this.sidebarOptions.backdrop == true &&  $('.bs-canvas-overlay').length !== 0)
+        if(this.sidebarOptions.backdrop == true &&  $('.bs-canvas-overlay').length === 0)
         {
             this.sidebar.insertBackdrop();
             this.bsOverlay = $('.bs-canvas-overlay');
