@@ -232,17 +232,22 @@ function ModalRemote(modalId) {
 		    {
 		        response.forceReload = response.forceReload.substring(0,strEnd);
 		    }
-		    $(response.forceReload).yiiGridView("applyFilter");
-                    // $.pjax.reload({container: response.forceReload});
+		    try
+		    {
+			//try to refresh through grid
+			$(response.forceReload).yiiGridView("applyFilter");
+		    }catch (error)
+		    {
+			//not viable for all pjax so do normal method
+                    	$.pjax.reload({container: response.forceReload});
+		    }
 	        }
-                
             }
         }
 
         // Close modal if response contains forceClose field
         if (response.forceClose !== undefined && response.forceClose) {
             this.hide();
-            return;
         }
 
 	if(response.forceRedirect !== undefined && response.forceRedirect) {
