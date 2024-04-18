@@ -41,7 +41,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
         this.sidebarEnabled = true;
         if(this.sidebarOptions.backdrop == true &&  $('.bs-canvas-overlay').length === 0)
         {
-            this.sidebar.insertBackdrop();
+            insertCanvasBackdrop();
             this.bsOverlay = $('.bs-canvas-overlay');
         }
 
