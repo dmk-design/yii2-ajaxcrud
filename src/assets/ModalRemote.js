@@ -114,6 +114,10 @@ function ModalRemote(modalId, sidebarOptions=false) {
         
     };
 
+    this.isVisible = function()
+    {
+        return  $(this.modal).is(':visible');
+    }
     /**
      * Hide the modal
      */
