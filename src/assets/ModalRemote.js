@@ -58,7 +58,39 @@ function ModalRemote(modalId, sidebarOptions=false) {
 
     this.footer = $(modalId).find('.modal-footer');
 
-        
+    this.target = undefined
+    this.amethod = "post"
+    this.adata = null
+    this.instance = null
+    this.modal = $(modalId);
+    this.modal.on('shown.bs.modal', {me:this}, function (e) {
+        me = e.data.me
+        if(me.target !== undefined)
+        {
+            $.ajax({
+                url: me.target,
+                method: me.amethod,
+                data: me.adata,
+                //async: false,
+                beforeSend: function () {
+                    
+                },
+                error: function (response) {
+                    errorRemoteResponse.call(me.instance, response);
+                },
+                success: function (response) {
+                    successRemoteResponse.call(me.instance, response);
+                },
+                complete: ()=>
+                {
+                    me.target = undefined
+                },
+                contentType: false,
+                cache: false,
+                processData: false
+            });
+        }
+    })     
     
    
 
@@ -212,25 +244,37 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * @param {object}data of request
      */
     this.doRemote = function (url, method, data) {
-        var instance = this;
-        $.ajax({
-            url: url,
-            method: method,
-            data: data,
-            async: false,
-            beforeSend: function () {
-                beforeRemoteRequest.call(instance);
-            },
-            error: function (response) {
-                errorRemoteResponse.call(instance, response);
-            },
-            success: function (response) {
-                successRemoteResponse.call(instance, response);
-            },
-            contentType: false,
-            cache: false,
-            processData: false
-        });
+        
+        if (this.isVisible())
+        {
+            var instance = this;
+            $.ajax({
+                url: url,
+                method: method,
+                data: data,
+                async: false,
+                beforeSend: function () {
+                    
+                },
+                error: function (response) {
+                    errorRemoteResponse.call(instance, response);
+                },
+                success: function (response) {
+                    successRemoteResponse.call(instance, response);
+                },
+                contentType: false,
+                cache: false,
+                processData: false
+            });
+        }else{
+            this.instance = this;
+            this.target  = url;
+            this.amethod = method;
+            this.data = data
+            beforeRemoteRequest.call(this.instance); 
+        }
+        
+        
     };
 
     /**
@@ -267,28 +311,31 @@ function ModalRemote(modalId, sidebarOptions=false) {
             if (response.forceReload == true||response.forceReload == 'true') {
                 // Backwards compatible reload of fixed crud-datatable-pjax
                 $.pjax.reload({container: '#crud-datatable-pjax'});
-            } else {
-		if(response.forceReloadUrl !== undefined && response.forceReloadUrl)
-		{
-		    $.pjax({container: response.forceReload,push:false, url:response.forceReloadUrl, timeout: 10000});
-		}
-	        else
-	        {
-		    var strEnd = response.forceReload.indexOf("-pjax");
-		    if(strEnd >=0)
-		    {
-		        response.forceReload = response.forceReload.substring(0,strEnd);
-		    }
-		    try
-		    {
-			//try to refresh through grid
-			$(response.forceReload).yiiGridView("applyFilter");
-		    }catch (error)
-		    {
-			//not viable for all pjax so do normal method
-                    	$.pjax.reload({container: response.forceReload});
-		    }
-	        }
+            } 
+        else 
+        {
+            if(response.forceReloadUrl !== undefined && response.forceReloadUrl)
+            {
+                $.pjax({container: response.forceReload,push:false, url:response.forceReloadUrl, timeout: 10000});
+            }
+            else
+            {
+                var strEnd = response.forceReload.indexOf("-pjax");
+                if(strEnd >=0)
+                {
+                    response.forceReload = response.forceReload.substring(0,strEnd);
+                }
+                try
+                {
+                    //try to refresh through grid
+                    $(response.forceReload).yiiGridView("applyFilter");
+                }
+                catch (error)
+                {
+                    //not viable for all pjax so do normal method
+                    $.pjax.reload({container: response.forceReload});
+                }
+            }
             }
         }
 
