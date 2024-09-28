@@ -92,8 +92,8 @@ function ModalRemote(modalId, sidebarOptions=false) {
         }
     })     
     
+    this.loadingTimer =null
    
-
     this.loadingContent = '<div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div></div>';
 
     
@@ -221,10 +221,10 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * Show loading state in modal
      */
     this.displayLoading = function () {
-        setTimeout(()=>{
+        this.loadingTimer = setTimeout(()=>{
             this.setContent(this.loadingContent);
             this.setTitle(this.defaults.loadingTitle);
-        }, 500)
+        }, 100)
            
     };
 
@@ -315,7 +315,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * @param {string} response
      */
     function successRemoteResponse(response) {
-
+        clearTimeout(this.loadingTimer);
         // Reload datatable if response contain forceReload field
         if (response.forceReload !== undefined && response.forceReload) {
             if (response.forceReload == true||response.forceReload == 'true') {
