@@ -224,7 +224,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
         this.loadingTimer = setTimeout(()=>{
             this.setContent(this.loadingContent);
             this.setTitle(this.defaults.loadingTitle);
-        }, 100)
+        }, 1000)
            
     };
 
