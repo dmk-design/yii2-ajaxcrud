@@ -221,8 +221,11 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * Show loading state in modal
      */
     this.displayLoading = function () {
-        this.setContent(this.loadingContent);
-        this.setTitle(this.defaults.loadingTitle);
+        setTimeout(()=>{
+            this.setContent(this.loadingContent);
+            this.setTitle(this.defaults.loadingTitle);
+        }, 500)
+           
     };
 
     /**
