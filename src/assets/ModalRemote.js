@@ -70,8 +70,8 @@ function ModalRemote(modalId, sidebarOptions=false) {
             $.ajax({
                 url: me.target,
                 method: me.amethod,
-                data: me.adata,
-                //async: false,
+                data: me.data,
+                async: false,
                 beforeSend: function () {
                     
                 },
