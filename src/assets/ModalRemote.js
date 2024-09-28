@@ -71,7 +71,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
                 url: me.target,
                 method: me.amethod,
                 data: me.data,
-                async: false,
+                //async: false,
                 beforeSend: function () {
                     
                 },
