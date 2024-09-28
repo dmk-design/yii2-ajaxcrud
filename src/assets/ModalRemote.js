@@ -264,35 +264,34 @@ function ModalRemote(modalId, sidebarOptions=false) {
      */
     this.doRemote = function (url, method, data) {
         
-        var instance = this;
-        if (!this.isVisible())
+        if (this.isVisible())
         {
+            var instance = this;
+            $.ajax({
+                url: url,
+                method: method,
+                data: data,
+                async: false,
+                beforeSend: function () {
+                    
+                },
+                error: function (response) {
+                    errorRemoteResponse.call(instance, response);
+                },
+                success: function (response) {
+                    successRemoteResponse.call(instance, response);
+                },
+                contentType: false,
+                cache: false,
+                processData: false
+            });
+        }else{
             this.instance = this;
             this.target  = url;
             this.amethod = method;
             this.data = data
             beforeRemoteRequest.call(this.instance); 
         }
-    
-        $.ajax({
-            url: url,
-            method: method,
-            data: data,
-            async: false,
-            beforeSend: function () {
-                
-            },
-            error: function (response) {
-                errorRemoteResponse.call(instance, response);
-            },
-            success: function (response) {
-                successRemoteResponse.call(instance, response);
-            },
-            contentType: false,
-            cache: false,
-            processData: false
-        });
-
         
         
     };
