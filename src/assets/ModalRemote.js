@@ -94,7 +94,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
     
    
 
-    this.loadingContent = '<div class="progress-bar progress-striped progress-bar-animated" style="margin-bottom:0;"><div class="progress-bar" style="width: 100%"></div></div>';
+    this.loadingContent = '<div class="progress" style="margin-bottom:0;"><div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div></div>';
 
     
     
