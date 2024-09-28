@@ -283,6 +283,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * @param {string} response
      */
     function errorRemoteResponse(response) {
+        clearTimeout(this.loadingTimer);
         this.setTitle(response.status + response.statusText);
         this.setContent(response.responseText);
         this.addFooterButton('Close', 'button', 'btn btn-default', function (button, event) {
