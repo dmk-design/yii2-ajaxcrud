@@ -116,22 +116,10 @@ function ModalRemote(modalId, sidebarOptions=false) {
 
     this.isVisible = function()
     {
-        var win = $(window);
-
-        var viewport = {
-            top : win.scrollTop(),
-            left : win.scrollLeft()
-        };
-        viewport.right = viewport.left + win.width();
-        viewport.bottom = viewport.top + win.height();
-    
-        element = $(this.modal)
-        var bounds = element .offset();
-        bounds.right = bounds.left + element.outerWidth();
-        bounds.bottom = bounds.top + element.outerHeight();
-        visible = !(viewport.right <= bounds.left || viewport.left >= bounds.right || viewport.bottom <= bounds.top || viewport.top >= bounds.bottom)
-        return (visible);
-       // return  $(this.modal).is(':visible');
+        if(!$(this.modal).is(':visible'))
+            return false;
+        //sidebar is "visible" but off canvas so
+        //return  $(this.modal).is(':visible');
     }
     /**
      * Hide the modal
@@ -273,7 +261,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
                 data: data,
                 async: false,
                 beforeSend: function () {
-                    
+                    this.show(); //for offcanvas it may be off page so we show it.
                 },
                 error: function (response) {
                     errorRemoteResponse.call(instance, response);

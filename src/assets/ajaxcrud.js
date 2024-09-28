@@ -51,7 +51,6 @@ $(document).ready(function () {
     //         offCanvas.bsOverlay.removeClass('show');
 	// 	return false;
     // });
-    
     // Catch click event on all buttons that want to open a modal
     $(document).on('click', '[role="modal-remote"]', function (event) {
         event.preventDefault();
