@@ -262,7 +262,6 @@ function ModalRemote(modalId, sidebarOptions=false) {
                 data: data,
                 async: false,
                 beforeSend: function () {
-                    this.show(); //for offcanvas it may be off page so we show it.
                 },
                 error: function (response) {
                     errorRemoteResponse.call(instance, response);
