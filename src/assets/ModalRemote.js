@@ -110,7 +110,12 @@ function ModalRemote(modalId, sidebarOptions=false) {
             this.sidebar.show();
         }
         else{
-            $(this.modal).modal('show');
+            if(this.isVisible())
+            {
+                this.modal.trigger('shown.bs.modal');
+            }else{
+                $(this.modal).modal('show');  
+            }
         }
         
     };
@@ -252,36 +257,13 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * @param {object}data of request
      */
     this.doRemote = function (url, method, data) {
-        
-        if (this.isVisible())
-        {
-            var instance = this;
-            $.ajax({
-                url: url,
-                method: method,
-                data: data,
-                async: false,
-                beforeSend: function () {
-                },
-                error: function (response) {
-                    errorRemoteResponse.call(instance, response);
-                },
-                success: function (response) {
-                    successRemoteResponse.call(instance, response);
-                },
-                contentType: false,
-                cache: false,
-                processData: false
-            });
-        }else{
-            this.instance = this;
-            this.target  = url;
-            this.amethod = method;
-            this.data = data
-            beforeRemoteRequest.call(this.instance); 
-        }
-        
-        
+
+        this.instance = this;
+        this.target  = url;
+        this.amethod = method;
+        this.data = data
+        beforeRemoteRequest.call(this.instance); 
+
     };
 
     /**
