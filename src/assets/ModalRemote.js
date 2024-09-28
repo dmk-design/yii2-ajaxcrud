@@ -272,8 +272,9 @@ function ModalRemote(modalId, sidebarOptions=false) {
      * - Show loading state in modal
      */
     function beforeRemoteRequest() {
-        this.show();
         this.displayLoading();
+        this.show();
+        
     }
 
 
