@@ -125,7 +125,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
         viewport.right = viewport.left + win.width();
         viewport.bottom = viewport.top + win.height();
     
-        var bounds = this.offset();
+        var bounds = $(this.modal).offset();
         bounds.right = bounds.left + this.outerWidth();
         bounds.bottom = bounds.top + this.outerHeight();
     
