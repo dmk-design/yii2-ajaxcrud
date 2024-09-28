@@ -117,10 +117,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
 
     this.isVisible = function()
     {
-        if(!$(this.modal).is(':visible'))
-            return false;
-        //sidebar is "visible" but off canvas so
-        //return  $(this.modal).is(':visible');
+        return  $(this.modal).is(':visible');
     }
     /**
      * Hide the modal
