@@ -63,7 +63,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
     this.adata = null
     this.instance = null
     this.modal = $(modalId);
-    this.modal.on('shown.bs.modal', {me:this}, function (e) {
+    this.modal.on('shown.bs.modal sidebar.shown', {me:this}, function (e) {
         me = e.data.me
         if(me.target !== undefined)
         {
@@ -106,6 +106,7 @@ function ModalRemote(modalId, sidebarOptions=false) {
         this.clear();
         if(this.sidebarEnabled === true)
         {
+            this.modal.trigger('sidebar.shown');
             this.sidebar.show();
         }
         else{
