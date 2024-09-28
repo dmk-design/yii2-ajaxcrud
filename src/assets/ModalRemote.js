@@ -129,9 +129,13 @@ function ModalRemote(modalId, sidebarOptions=false) {
         var bounds = element .offset();
         bounds.right = bounds.left + element.outerWidth();
         bounds.bottom = bounds.top + element.outerHeight();
+        //if its hidden return false
+        if(!$(this.modal).is(':visible'))
+            return false;
+        //if its visible check if its off the page (offcanvas)
         visible = !(viewport.right <= bounds.left || viewport.left >= bounds.right || viewport.bottom <= bounds.top || viewport.top >= bounds.bottom)
         return (visible);
-       // return  $(this.modal).is(':visible');
+       // 
     }
     /**
      * Hide the modal
